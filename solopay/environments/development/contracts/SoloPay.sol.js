@@ -29,11 +29,11 @@ var factory = function factory(Pudding) {
   SoloPay.abi = [{ "constant": true, "inputs": [], "name": "payer", "outputs": [{ "name": "", "type": "address" }], "type": "function" }, { "constant": true, "inputs": [], "name": "payerFinalBalance", "outputs": [{ "name": "", "type": "uint256" }], "type": "function" }, { "constant": true, "inputs": [], "name": "payeeBeginningBalance", "outputs": [{ "name": "", "type": "uint256" }], "type": "function" }, { "constant": true, "inputs": [], "name": "payerBeginningBalance", "outputs": [{ "name": "", "type": "uint256" }], "type": "function" }, { "constant": true, "inputs": [], "name": "payee", "outputs": [{ "name": "", "type": "address" }], "type": "function" }, { "constant": true, "inputs": [], "name": "payeeFinalBalance", "outputs": [{ "name": "", "type": "uint256" }], "type": "function" }, { "inputs": [{ "name": "_payeeAddress", "type": "address" }], "type": "constructor" }];
   SoloPay.binary = "606060405260405160208061013b83395060806040525160008054600160a060020a0319908116331780835560018054909216841791829055346002819055600160a060020a0391821631600355911680316004559190608082818181858883f150509054600160a060020a0390811631600555600154163160065550505060b08061008b6000396000f360606040523615604f5760e060020a6000350463123119cd8114605157806313f307ed14606257806353641aa914606a57806361e12856146072578063ae90b21314607a578063b08de6cb14608b575b005b6093600054600160a060020a031681565b60a660055481565b60a660045481565b60a660035481565b6093600154600160a060020a031681565b60a660065481565b600160a060020a03166060908152602090f35b6060908152602090f3";
 
-  if ("0xfb0b50eeba7af5a8ae8218155bab00dc8c09247d" != "") {
-    SoloPay.address = "0xfb0b50eeba7af5a8ae8218155bab00dc8c09247d";
+  if ("0x437d82e50bba0878a37e08628a74efd81b6f067f" != "") {
+    SoloPay.address = "0x437d82e50bba0878a37e08628a74efd81b6f067f";
 
     // Backward compatibility; Deprecated.
-    SoloPay.deployed_address = "0xfb0b50eeba7af5a8ae8218155bab00dc8c09247d";
+    SoloPay.deployed_address = "0x437d82e50bba0878a37e08628a74efd81b6f067f";
   }
 
   SoloPay.generated_with = "1.0.3";

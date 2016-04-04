@@ -19,7 +19,7 @@ contract SplitPay {
     mapping (uint => Payee) payees;
 
     // number of payout recipients
-    uint numPayees;
+    uint public numPayees = 0;
 
     // currently only supporting single-buyer support:
     //   if there exist multiple contributors/tippers, each will 
@@ -31,16 +31,6 @@ contract SplitPay {
 
     function SplitPay() {
         buyer = msg.sender;
-    }
-
-    function SplitPay(address _payeeAddress) {
-        buyer = msg.sender;
-
-        // add to an indexed internal set of payees
-        payees[numPayees] = Payee(_payeeAddress, 100, 0);
-
-        // increment payee counter
-        numPayees++;
     }
 
     // current invariant: single buyer per SplitPay contract
