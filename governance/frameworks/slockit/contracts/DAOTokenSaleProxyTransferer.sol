@@ -23,7 +23,7 @@ Calling this contract automatically triggers a call to buyTokenProxy() using the
 A unique instance of such a contract would have to be deployed per participant, usually using a middleware layer on a webserver, for example.
 */
 
-import "./TokenSale.sol";
+import "TokenSale";
 
 contract DAOTokenSaleProxyTransferer {
     address public owner;

@@ -21,8 +21,8 @@ Token Sale contract, used by the DAO to sell its tokens and initialize its ether
 Feel free to modify the divisor method to implement different Token sale parameters 
 */
 
-import "./Token.sol";
-import "./ManagedAccount.sol";
+import "Token";
+import "ManagedAccount";
 
 contract TokenSaleInterface {
 

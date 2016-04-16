@@ -21,8 +21,8 @@ Generic smart contract for a Decentralized Autonomous Organization (DAO)
 to automate organizational governance and decision-making.
 */
 
-import "./TokenSale.sol";
-import "./ManagedAccount.sol";
+import "TokenSale";
+import "ManagedAccount";
 
 contract DAOInterface {
 

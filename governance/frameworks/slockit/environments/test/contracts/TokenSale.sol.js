@@ -1,0 +1,54 @@
+"use strict";
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var factory = function factory(Pudding) {
+  // Inherit from Pudding. The dependency on Babel sucks, but it's
+  // the easiest way to extend a Babel-based class. Note that the
+  // resulting .js file does not have a dependency on Babel.
+
+  var TokenSale = (function (_Pudding) {
+    _inherits(TokenSale, _Pudding);
+
+    function TokenSale() {
+      _classCallCheck(this, TokenSale);
+
+      _get(Object.getPrototypeOf(TokenSale.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    return TokenSale;
+  })(Pudding);
+
+  ;
+
+  // Set up specific data for this class.
+  TokenSale.abi = [{ "constant": false, "inputs": [{ "name": "_spender", "type": "address" }, { "name": "_amount", "type": "uint256" }], "name": "approve", "outputs": [{ "name": "success", "type": "bool" }], "type": "function" }, { "constant": false, "inputs": [{ "name": "_tokenHolder", "type": "address" }], "name": "buyTokenProxy", "outputs": [{ "name": "success", "type": "bool" }], "type": "function" }, { "constant": true, "inputs": [], "name": "totalSupply", "outputs": [{ "name": "", "type": "uint256" }], "type": "function" }, { "constant": false, "inputs": [], "name": "divisor", "outputs": [{ "name": "divisor", "type": "uint256" }], "type": "function" }, { "constant": true, "inputs": [], "name": "extraBalance", "outputs": [{ "name": "", "type": "address" }], "type": "function" }, { "constant": false, "inputs": [{ "name": "_from", "type": "address" }, { "name": "_to", "type": "address" }, { "name": "_amount", "type": "uint256" }], "name": "transferFrom", "outputs": [{ "name": "success", "type": "bool" }], "type": "function" }, { "constant": true, "inputs": [], "name": "closingTime", "outputs": [{ "name": "", "type": "uint256" }], "type": "function" }, { "constant": false, "inputs": [], "name": "refund", "outputs": [], "type": "function" }, { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }], "name": "balanceOf", "outputs": [{ "name": "balance", "type": "uint256" }], "type": "function" }, { "constant": true, "inputs": [], "name": "minValue", "outputs": [{ "name": "", "type": "uint256" }], "type": "function" }, { "constant": false, "inputs": [{ "name": "_to", "type": "address" }, { "name": "_amount", "type": "uint256" }], "name": "transfer", "outputs": [{ "name": "success", "type": "bool" }], "type": "function" }, { "constant": true, "inputs": [], "name": "isFueled", "outputs": [{ "name": "", "type": "bool" }], "type": "function" }, { "constant": true, "inputs": [], "name": "privateSale", "outputs": [{ "name": "", "type": "address" }], "type": "function" }, { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }, { "name": "_spender", "type": "address" }], "name": "allowance", "outputs": [{ "name": "remaining", "type": "uint256" }], "type": "function" }, { "inputs": [{ "name": "_minValue", "type": "uint256" }, { "name": "_closingTime", "type": "uint256" }, { "name": "_privateSale", "type": "address" }], "type": "constructor" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "_from", "type": "address" }, { "indexed": true, "name": "_to", "type": "address" }, { "indexed": false, "name": "_amount", "type": "uint256" }], "name": "Transfer", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "_owner", "type": "address" }, { "indexed": true, "name": "_spender", "type": "address" }, { "indexed": false, "name": "_amount", "type": "uint256" }], "name": "Approval", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "value", "type": "uint256" }], "name": "FundingToDate", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "to", "type": "address" }, { "indexed": false, "name": "amount", "type": "uint256" }], "name": "SoldToken", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "to", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }], "name": "Refund", "type": "event" }];
+  TokenSale.binary = "606060405260405160608061095e83395060c06040525160805160a0516000829055600183905560028054610100830261010060a860020a03199091161790553060c061014f8061008d8339600160a060020a03909216908201526040519081900360e001906000f060038054600160a060020a031916919091179055505050610782806101dc6000396000f3606060405260405160208061014f83395060806040525160008054600160a060020a0319168217905550610118806100376000396000f3606060405236156100355760e060020a60003504630221038a81146100425780638da5cb5b14610074578063d2cc718f14610086575b61008f6001805434019055565b6100916004356024356000805433600160a060020a03908116911614158061006a5750600034115b156100ad57610002565b6100a3600054600160a060020a031681565b61009160015481565b005b60408051918252519081900360200190f35b6060908152602090f35b600160a060020a0383168260608381818185876185025a03f1925050501561011257604080518381529051600160a060020a038516917f9735b0cb909f3d21d5c16bbcccd272d85fa11446f6d679f6ecb170d2dabfecfc919081900360200190a25060015b9291505056606060405236156100ae5760e060020a6000350463095ea7b381146100b057806313d4bc241461012557806318160ddd146101865780631f2dc5ef1461018f57806321b5b8dd146101af57806323b872dd146101c15780634b6753bc146101dd578063590e1ae3146101e657806370a08231146101f7578063963e63c714610225578063a9059cbb1461022e578063b7bc2c8414610247578063ba1f879f14610253578063dd62ed3e1461026a575b005b61021360043560243533600160a060020a03908116600081815260066020908152604080832094871680845294825280832086905580518681529051929493927f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925929181900390910190a35060015b92915050565b6102136004356000805481904210801561013f5750600034115b801561017957506002546101009004600160a060020a03166000148061017957506002546101009004600160a060020a0390811633909116145b156104565761045b610193565b61021360075481565b6102135b6000426212750060006000505403111561074d5750601461077f565b61029e600354600160a060020a031681565b6102136004356024356044356000600034111561036157610002565b61021360005481565b6100ae600034111561055f57610002565b600160a060020a03600435166000908152600560205260409020545b60408051918252519081900360200190f35b61021360015481565b610213600435602435600060003411156102bb57610002565b61021360025460ff1681565b61029e6002546101009004600160a060020a031681565b610213600435602435600160a060020a0382811660009081526006602090815260408083209385168352929052205461011f565b60408051600160a060020a03929092168252519081900360200190f35b33600160a060020a03166000908152600560205260409020548290108015906102e45750600082115b156103595733600160a060020a03908116600081815260056020908152604080832080548890039055938716808352918490208054870190558351868152935191937fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef929081900390910190a350600161011f565b50600061011f565b600160a060020a0384166000908152600560205260409020548290108015906103b15750600160a060020a0384811660009081526006602090815260408083203390941683529290522054829010155b80156103bd5750600082115b1561044b57600160a060020a03838116600081815260056020908152604080832080548801905588851680845281842080548990039055600683528184203390961684529482529182902080548790039055815186815291519293927fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef9281900390910190a350600161044f565b5060005b9392505050565b610002565b600354604051601434908102939093049350600160a060020a03919091169183900390600081818185876185025a03f150505050600160a060020a038316600081815260056020908152604080832080548601905560078054860190556004825291829020805434019055815184815291517f8338662358e4188b6716fe38d845443fe23e7dc9dcb10134fd37212b629d14299281900390910190a26001546007541080159061050e575060025460ff16155b15610556576002805460ff1916600117905560075460408051918252517f1cd7dc2099d68adfb48eff32e7ecb17e2718d79a60bec1742103cb6f68c07c939181900360200190a15b50600192915050565b60005442118015610573575060025460ff16155b1561074b57600354604080517fd2cc718f0000000000000000000000000000000000000000000000000000000081529051600160a060020a039290921691630221038a913091849163d2cc718f91600482810192602092919082900301816000876161da5a03f1156100025750506040805180517f0221038a000000000000000000000000000000000000000000000000000000008252600160a060020a039490941660048201526024810193909352516044838101936020935082900301816000876161da5a03f1156100025750506040805133600160a060020a031660008181526004602052928320549093509181818185876185025a03f1925050501561074b576040600081812033600160a060020a03169182905260046020908152835191548252925191927fbb28353e4598c3b9199101a66e0989549b659a59a54d2c27fbb183f1932c8e6d92918290030190a26005600050600033600160a060020a0316815260200190815260200160002060005054600760008282825054039250508190555060006005600050600033600160a060020a031681526020019081526020016000206000508190555060006004600050600033600160a060020a03168152602001908152602001600020600050819055505b565b426205460060006000505403111561077b57620151806212750060006000505403420304601401905061077f565b50601e5b9056";
+
+  if ("" != "") {
+    TokenSale.address = "";
+
+    // Backward compatibility; Deprecated.
+    TokenSale.deployed_address = "";
+  }
+
+  TokenSale.generated_with = "1.0.3";
+  TokenSale.contract_name = "TokenSale";
+
+  return TokenSale;
+};
+
+// Nicety for Node.
+factory.load = factory;
+
+if (typeof module != "undefined") {
+  module.exports = factory;
+} else {
+  // There will only be one version of Pudding in the browser,
+  // and we can use that.
+  window.TokenSale = factory;
+}

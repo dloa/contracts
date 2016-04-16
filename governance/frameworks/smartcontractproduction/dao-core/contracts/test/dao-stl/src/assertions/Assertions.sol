@@ -1445,7 +1445,7 @@ library Assertions {
     function _itoa(int n, uint8 radix) internal constant returns (string) {
         if (n == 0 || radix < 2 || radix > 16)
             return '0';
-        bytes memory bts = new bytes(256);
+        bytes memory bts = bytes(256);
         uint i;
         bool neg = false;
         if (n < 0) {
@@ -1463,11 +1463,11 @@ library Assertions {
         if (neg) {
             size++;
             j = 1;
-            rev = new bytes(size);
+            rev = bytes(size);
             rev[0] = MINUS;
         }
         else
-            rev = new bytes(size);
+            rev = bytes(size);
 
         for (; j < size; j++)
             rev[j] = bts[size - j - 1];
@@ -1489,14 +1489,14 @@ library Assertions {
     function _utoa(uint n, uint8 radix) internal constant returns (string) {
         if (n == 0 || radix < 2 || radix > 16)
             return '0';
-        bytes memory bts = new bytes(256);
+        bytes memory bts = bytes(256);
         uint i;
         while (n > 0) {
             bts[i++] = _utoa(uint8(n % radix)); // Turn it to ascii.
             n /= radix;
         }
         // Reverse
-        bytes memory rev = new bytes(i);
+        bytes memory rev = bytes(i);
         for (uint j = 0; j < i; j++)
             rev[j] = bts[i - j - 1];
         return string(rev);
@@ -1537,7 +1537,7 @@ library Assertions {
     function _ltoa(bool val) internal constant returns (string) {
         bytes memory b;
         if (val) {
-            b = new bytes(4);
+            b = bytes(4);
             b[0] = 't';
             b[1] = 'r';
             b[2] = 'u';
@@ -1545,7 +1545,7 @@ library Assertions {
             return string(b);
         }
         else {
-            b = new bytes(5);
+            b = bytes(5);
             b[0] = 'f';
             b[1] = 'a';
             b[2] = 'l';
@@ -1587,7 +1587,7 @@ library Assertions {
         uint vl = valueB.length;
         uint tl = tagB.length;
 
-        bytes memory newB = new bytes(vl + tl + 2);
+        bytes memory newB = bytes(vl + tl + 2);
 
         uint i;
         uint j;
