@@ -1,9 +1,9 @@
 contract Proposal {
 
-	event ProposalAccepted(address _from);
+	event ProposalAccepted(address acceptor, uint amount);
 
 	function acceptProposal() {
-		ProposalAccepted(msg.sender);
+		ProposalAccepted(msg.sender, msg.value);
 	}
 
 }

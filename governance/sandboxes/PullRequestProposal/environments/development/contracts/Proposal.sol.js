@@ -26,8 +26,8 @@ var factory = function factory(Pudding) {
   ;
 
   // Set up specific data for this class.
-  Proposal.abi = [{ "constant": false, "inputs": [], "name": "acceptProposal", "outputs": [], "type": "function" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "_from", "type": "address" }], "name": "ProposalAccepted", "type": "event" }];
-  Proposal.binary = "606060405260608060106000396000f3606060405260e060020a6000350463af3b19e58114601a575b005b601873ffffffffffffffffffffffffffffffffffffffff331660609081527f62a8ec741714d1b244dfead5c9f51792b1bf1720f436d95f80f9d295d00d6ab590602090a156";
+  Proposal.abi = [{ "constant": false, "inputs": [], "name": "acceptProposal", "outputs": [], "type": "function" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "acceptor", "type": "address" }, { "indexed": false, "name": "amount", "type": "uint256" }], "name": "ProposalAccepted", "type": "event" }];
+  Proposal.binary = "606060405260648060106000396000f3606060405260e060020a6000350463af3b19e58114601a575b005b601873ffffffffffffffffffffffffffffffffffffffff33166060908152346080527f0447e15907813bfb966eab36935a68eeb6360426cc5d554898d37c9cb475cca690604090a156";
 
   if ("" != "") {
     Proposal.address = "";
