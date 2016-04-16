@@ -1,0 +1,145 @@
+/*
+    File: PropertySet.slb
+    Author: Andreas Olofsson (androlo1980@gmail.com)
+*/
+
+/*
+    Library: PropertySet
+
+    PropertySet is a set backed by an iterable map with (bytes32, bool) entries.
+
+    Insertion, finding, and removing elements are all O(1).
+
+    Stores a boolean, and an array index (uint) for each element, in addition to the address.
+    This is for easy lookup, and for making iteration possible.
+
+    Order of insertion is not preserved.
+*/
+library PropertySet {
+    
+    /*
+        Struct: Element
+
+        Element type for the set.
+        Members should not be accessed directly.
+
+        Members:
+
+        _valIndex - The index of the value in the backing array.
+        _exists - Whether or not the element exists (used for null-checks).
+    */
+    struct Element {
+        uint _valIndex;
+        bool _exists;
+    }
+
+    /*
+        Struct: Set
+
+        Contains mappings of 'bytes32' -> <Element>, and an array with all values for iteration.
+    */
+    struct Set
+    {
+        mapping(bytes32 => Element) _data;
+        bytes32[] _values;
+    }
+
+    /*
+        Function: insert
+
+        Add a value to the set.
+
+        Params:
+            self (Set) - Storage reference to the set.
+            val (bytes32) - The value.
+
+        Returns:
+            added (bool) - 'true' if the bytes32 was added, 'false' if not.
+    */
+    function insert(Set storage self, bytes32 val) returns (bool added) {
+        if (!self._data[val]._exists) {
+            self._data[val] = Element(self._values.push(val) - 1, true);
+            return true;
+        }
+    }
+
+    /*
+        Function: remove
+
+        Remove a value from the set.
+
+        Params:
+            self (Set) - Storage reference to the set.
+            val (bytes32) - The value.
+
+        Returns:
+            removed (bool) - 'true' if the bytes32 was removed, 'false' if not.
+    */
+    function remove(Set storage self, bytes32 val) returns (bool removed) {
+        var elem = self._data[val];
+        if (!elem._exists)  return false;
+
+        var valIndex = elem._valIndex;
+        delete self._data[val];
+        var len = self._values.length;
+        if(valIndex != len - 1){
+            var swap = self._values[len - 1];
+            self._values[valIndex] = swap;
+            self._data[swap]._valIndex = valIndex;
+        }
+        self._values.length--;
+        return true;
+    }
+
+    /*
+        Function: hasValue
+
+        Check if a value exists.
+
+        Params:
+            self (Set) - Storage reference to the set.
+            val (bytes32) - The value.
+
+        Returns:
+            has (bool) 'true' if the value was found, 'false' otherwise.
+    */
+    function hasValue(Set storage self, bytes32 val) constant returns (bool has) {
+        return self._data[val]._exists;
+    }
+
+    /*
+        Function: valueFromIndex
+
+        Get a value by its index in the backing array.
+
+        Params:
+            self (Set) - Storage reference to the set.
+            index (uint) - The index.
+
+        Returns:
+            value (bytes32) - The value.
+            exists (bool) 'true' if the value was found, 'false' otherwise. Workaround for when index is out of bounds.
+    */
+    function valueFromIndex(Set storage self, uint index) constant returns (bytes32 value, bool exists) {
+        if (index >= self._values.length)
+            return;
+        else
+            return (self._values[index], true);
+    }
+
+    /*
+        Function: size
+
+        Get the size of the set. The size is the number of elements currently stored in the set.
+
+        Params:
+            self (Set) - Storage reference to the set.
+
+        Returns:
+            size (uint) - The size.
+    */
+    function size(Set storage self) constant returns (uint size) {
+        return self._values.length;
+    }
+
+}
