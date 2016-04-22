@@ -1,0 +1,37 @@
+<!doctype>
+<html>
+<head>
+<script type='text/javascript'>
+
+// initialize default account
+web3.eth.defaultAccount = web3.eth.accounts[0];
+	
+function getIpfsHash() {
+	var param = document.getElementById('query').value;
+	var res = contracts['IpfsHashLibrary'].contract.ipfsHashStore(param);
+	document.getElementById('queryres').innerText = res;
+}
+
+function setIpfsHash() {
+	var key = document.getElementById('key').value;
+	var value = parseInt(document.getElementById('value').value);
+	var res = contracts['IpfsHashLibrary'].contract.setIpfsHash(key, value);
+}
+
+</script>
+</head>
+<body bgcolor='#E6E6FA'>
+	<h3>Ipfs Hash Store</h3>
+<div>
+Store:
+	<input type='string' id='key'>
+	<input type='number' id='value'>
+	<button onclick='setIpfsHash()'>Save</button>
+</div>
+<div>
+Query:
+	<input type='string' id='query' onkeyup='getIpfsHash()' />
+	<div id='queryres'></div>
+</div>
+</body>
+</html>
