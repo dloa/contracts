@@ -18,11 +18,14 @@ contract AlexContent is mortal {
 
 	address owner;
 	string index;
-	string name;
-	uint price;
-	mapping (address => uint) balances;
+	string public name;
+	uint public price;
+	mapping (address => uint) amountPaid;
 	mapping (address => bool) paid;
 
+  	// log the events
+  	event ArtistPaid(address _from, uint _amount);
+  
 	function AlexContent() {
 		owner = msg.sender;
 	}
@@ -55,10 +58,9 @@ contract AlexContent is mortal {
 	}
 
 	function purchase() returns(bool success) {
-		if (balances[msg.sender] < price) return false;
-		balances[msg.sender] -= price;
-		balances[owner] += price;
+		if (msg.value < price) return false;
 		paid[msg.sender] = true;
+		ArtistPaid(msg.sender, msg.value);
 		return true;
 	}
 
